@@ -17,6 +17,7 @@ export class PomodoroPage {
   pausedPomodoro: boolean;
   numberOfPomodoros: number = 0;
   numberOfPauses: number = 0;
+  numberOfBreaks: number = 0;
 
   startedBreak: boolean;
 
@@ -42,7 +43,13 @@ export class PomodoroPage {
       } else {
         clearInterval(this.timer);
         this.numberOfPomodoros++;
-        this.startBreak(300);
+        this.numberOfBreaks++;
+        if (this.numberOfBreaks == 3) {
+          this.numberOfBreaks = 0;
+          this.startBreak(900);
+        } else {
+          this.startBreak(300);
+        }
       }
     }, 1000);
   }
@@ -77,7 +84,13 @@ export class PomodoroPage {
       } else {
         clearInterval(this.timer);
         this.numberOfPomodoros++;
-        this.startBreak(300);
+        this.numberOfBreaks++;
+        if (this.numberOfBreaks == 3) {
+          this.numberOfBreaks = 0;
+          this.startBreak(900);
+        } else {
+          this.startBreak(300);
+        }
       }
     }, 1000);
   }
@@ -91,11 +104,15 @@ export class PomodoroPage {
     clearInterval(this.timer);
   }
 
+  // Helper function: formats seconds into minutes and adds trailing 0's.
   minutesSeconds(seconds) {
     if (seconds >= 60) {
       this.minutes = Math.floor(seconds / 60);
+      if(this.minutes < 10){
+        this.minutes = "0" + this.minutes;
+      }
     } else {
-      this.minutes = 0;
+      this.minutes = "00";
     }
     this.seconds = seconds % 60;
     if (this.seconds < 10) {
