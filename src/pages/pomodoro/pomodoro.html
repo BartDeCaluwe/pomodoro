@@ -16,7 +16,10 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <ion-col width-30></ion-col>
+      <ion-col width-30>
+        Pomodoros completed: {{ numberOfPomodoros }} <br>
+        Interruptions: {{ numberOfPauses }}
+      </ion-col>
       <ion-col width-30>
         <ion-item id="timeLeft">{{ minutes }} : {{ seconds }}</ion-item>
       </ion-col>
@@ -25,9 +28,9 @@
     <ion-row>
       <ion-col width-30></ion-col>
       <ion-col width-30>
-        <button ion-button color="secondary" *ngIf="!started" (click)="startPomodoro(1500)"> Start Pomodoro </button>
-        <button ion-button id="pauseButton" *ngIf="started && !paused" (click)="pausePomodoro(timeForTimer)"> Pause Pomodoro </button>
-        <button ion-button color="secondary" *ngIf="paused" (click)="resumePomodoro(timeForTimer)"> Resume Pomodoro </button>
+        <button ion-button color="secondary" *ngIf="!startedPomodoro" (click)="startPomodoro(15)"> Start Pomodoro </button>
+        <button ion-button id="pauseButton" *ngIf="startedPomodoro && !pausedPomodoro" (click)="pausePomodoro(timeForTimer)"> Pause Pomodoro </button>
+        <button ion-button color="secondary" *ngIf="pausedPomodoro" (click)="resumePomodoro(timeForTimer)"> Resume Pomodoro </button>
         <button ion-button color="danger" (click)="stopPomodoro()"> Stop Pomodoro </button>
       </ion-col>
       <ion-col width-30></ion-col>

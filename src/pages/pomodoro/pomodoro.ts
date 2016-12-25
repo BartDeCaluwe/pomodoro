@@ -13,11 +13,16 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class PomodoroPage {
 
-  started: boolean;
-  paused: boolean;
+  startedPomodoro: boolean;
+  pausedPomodoro: boolean;
+  numberOfPomodoros: number = 0;
+  numberOfPauses: number = 0;
+
+  startedBreak: boolean;
+
   timer: any;
   timeForTimer: number;
-  minutes: any = "25";
+  minutes: any = "00";
   seconds: any = "00";
 
   constructor(public navCtrl: NavController, public navParams: NavParams) { }
@@ -27,8 +32,23 @@ export class PomodoroPage {
   }
 
   startPomodoro(time) {
-    this.started = true;
-    this.paused = false;
+    this.startedPomodoro = true;
+    this.pausedPomodoro = false;
+    this.timeForTimer = time;
+    this.timer = setInterval(() => {
+      if (this.timeForTimer != 0) {
+        this.timeForTimer -= 1;
+        this.minutesSeconds(this.timeForTimer);
+      } else {
+        clearInterval(this.timer);
+        this.numberOfPomodoros++;
+        this.startBreak(300);
+      }
+    }, 1000);
+  }
+
+  startBreak(time) {
+    this.startedBreak = true;
     this.timeForTimer = time;
     this.timer = setInterval(() => {
       if (this.timeForTimer != 0) {
@@ -41,29 +61,32 @@ export class PomodoroPage {
   }
 
   pausePomodoro(timeRemaining) {
-    this.paused = true;
+    this.pausedPomodoro = true;
+    this.numberOfPauses++;
     this.timeForTimer = timeRemaining;
     clearInterval(this.timer);
   }
 
   resumePomodoro(time) {
-    this.paused = false;
+    this.pausedPomodoro = false;
     this.timeForTimer = time;
     this.timer = setInterval(() => {
       if (this.timeForTimer != 0) {
         this.timeForTimer -= 1;
-        this.minutesSeconds(this.timeForTimer);        
+        this.minutesSeconds(this.timeForTimer);
       } else {
         clearInterval(this.timer);
+        this.numberOfPomodoros++;
+        this.startBreak(300);
       }
     }, 1000);
   }
 
   stopPomodoro() {
-    this.started = false;
-    this.paused = false;
+    this.startedPomodoro = false;
+    this.pausedPomodoro = false;
     this.timeForTimer = 0;
-    this.minutes = "25";
+    this.minutes = "00";
     this.seconds = "00";
     clearInterval(this.timer);
   }
@@ -75,7 +98,7 @@ export class PomodoroPage {
       this.minutes = 0;
     }
     this.seconds = seconds % 60;
-    if(this.seconds < 10){
+    if (this.seconds < 10) {
       this.seconds = "0" + this.seconds;
     }
   }
