@@ -17,6 +17,8 @@ export class PomodoroPage {
   paused: boolean;
   timer: any;
   timeForTimer: number;
+  minutes: any = "25";
+  seconds: any = "00";
 
   constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
@@ -31,6 +33,7 @@ export class PomodoroPage {
     this.timer = setInterval(() => {
       if (this.timeForTimer != 0) {
         this.timeForTimer -= 1;
+        this.minutesSeconds(this.timeForTimer);
       } else {
         clearInterval(this.timer);
       }
@@ -43,12 +46,13 @@ export class PomodoroPage {
     clearInterval(this.timer);
   }
 
-  resumePomodoro(time){
+  resumePomodoro(time) {
     this.paused = false;
     this.timeForTimer = time;
     this.timer = setInterval(() => {
       if (this.timeForTimer != 0) {
         this.timeForTimer -= 1;
+        this.minutesSeconds(this.timeForTimer);        
       } else {
         clearInterval(this.timer);
       }
@@ -59,7 +63,20 @@ export class PomodoroPage {
     this.started = false;
     this.paused = false;
     this.timeForTimer = 0;
+    this.minutes = "25";
+    this.seconds = "00";
     clearInterval(this.timer);
   }
 
+  minutesSeconds(seconds) {
+    if (seconds >= 60) {
+      this.minutes = Math.floor(seconds / 60);
+    } else {
+      this.minutes = 0;
+    }
+    this.seconds = seconds % 60;
+    if(this.seconds < 10){
+      this.seconds = "0" + this.seconds;
+    }
+  }
 }
