@@ -104,11 +104,16 @@ export class PomodoroPage {
     clearInterval(this.timer);
   }
 
+  clearPomodoro() {
+    this.numberOfPomodoros = 0;
+    this.numberOfPauses = 0;
+    this.numberOfBreaks = 0;
+  }
   // Helper function: formats seconds into minutes and adds trailing 0's.
   minutesSeconds(seconds) {
     if (seconds >= 60) {
       this.minutes = Math.floor(seconds / 60);
-      if(this.minutes < 10){
+      if (this.minutes < 10) {
         this.minutes = "0" + this.minutes;
       }
     } else {

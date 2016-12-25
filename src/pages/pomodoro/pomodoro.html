@@ -31,7 +31,8 @@
         <button ion-button color="secondary" *ngIf="!startedPomodoro" (click)="startPomodoro(15)"> Start Pomodoro </button>
         <button ion-button id="pauseButton" *ngIf="startedPomodoro && !pausedPomodoro" (click)="pausePomodoro(timeForTimer)"> Pause Pomodoro </button>
         <button ion-button color="secondary" *ngIf="pausedPomodoro" (click)="resumePomodoro(timeForTimer)"> Resume Pomodoro </button>
-        <button ion-button color="danger" (click)="stopPomodoro()"> Stop Pomodoro </button>
+        <button ion-button color="danger" *ngIf="startedPomodoro" (click)="stopPomodoro()"> Stop Pomodoro </button>
+        <button ion-button color="danger" *ngIf="!startedPomodoro" (click)="clearPomodoro()"> Clear Pomodoros </button>
       </ion-col>
       <ion-col width-30></ion-col>
     </ion-row>
