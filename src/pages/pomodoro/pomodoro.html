@@ -18,14 +18,14 @@
     <ion-row>
       <ion-col width-30></ion-col>
       <ion-col width-30>
-        <ion-item>{{ timeForTimer }}</ion-item>
+        <ion-item id="timeLeft">{{ minutes }} : {{ seconds }}</ion-item>
       </ion-col>
       <ion-col width-30></ion-col>
     </ion-row>
     <ion-row>
       <ion-col width-30></ion-col>
       <ion-col width-30>
-        <button ion-button color="secondary" *ngIf="!started" (click)="startPomodoro(25000)"> Start Pomodoro </button>
+        <button ion-button color="secondary" *ngIf="!started" (click)="startPomodoro(1500)"> Start Pomodoro </button>
         <button ion-button id="pauseButton" *ngIf="started && !paused" (click)="pausePomodoro(timeForTimer)"> Pause Pomodoro </button>
         <button ion-button color="secondary" *ngIf="paused" (click)="resumePomodoro(timeForTimer)"> Resume Pomodoro </button>
         <button ion-button color="danger" (click)="stopPomodoro()"> Stop Pomodoro </button>
