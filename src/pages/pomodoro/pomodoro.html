@@ -27,7 +27,7 @@
     <ion-row>
       <ion-col></ion-col>
       <ion-col>
-        <button ion-button round color="secondary" *ngIf="!startedPomodoro" (click)="startPomodoro(15)"> Start </button>
+        <button ion-button round color="secondary" *ngIf="!startedPomodoro" (click)="startPomodoro(1500)"> Start </button>
         <button ion-button round id="pauseButton" *ngIf="startedPomodoro && !pausedPomodoro" (click)="pausePomodoro(timeForTimer)"> Pause </button>
         <button ion-button round color="secondary" *ngIf="pausedPomodoro" (click)="resumePomodoro(timeForTimer)"> Resume </button>
       </ion-col>
