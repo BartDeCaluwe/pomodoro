@@ -16,25 +16,31 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <ion-col width-30>
-        Pomodoros completed: {{ numberOfPomodoros }} <br>
-        Interruptions: {{ numberOfPauses }}
-      </ion-col>
-      <ion-col width-30>
-        <ion-item id="timeLeft">{{ minutes }} : {{ seconds }}</ion-item>
-      </ion-col>
       <ion-col width-30></ion-col>
+      <ion-col width-50>
+        <div class="center" id="timeLeft">{{ minutes }} : {{ seconds }}</div>
+      </ion-col>
+      <ion-col width-20></ion-col>
     </ion-row>
     <ion-row>
-      <ion-col width-30></ion-col>
-      <ion-col width-30>
-        <button ion-button color="secondary" *ngIf="!startedPomodoro" (click)="startPomodoro(15)"> Start Pomodoro </button>
-        <button ion-button id="pauseButton" *ngIf="startedPomodoro && !pausedPomodoro" (click)="pausePomodoro(timeForTimer)"> Pause Pomodoro </button>
-        <button ion-button color="secondary" *ngIf="pausedPomodoro" (click)="resumePomodoro(timeForTimer)"> Resume Pomodoro </button>
-        <button ion-button color="danger" *ngIf="startedPomodoro" (click)="stopPomodoro()"> Stop Pomodoro </button>
-        <button ion-button color="danger" *ngIf="!startedPomodoro" (click)="clearPomodoro()"> Clear Pomodoros </button>
+      <ion-col></ion-col>
+      <ion-col>
+        <button ion-button round color="secondary" *ngIf="!startedPomodoro" (click)="startPomodoro(15)"> Start </button>
+        <button ion-button round id="pauseButton" *ngIf="startedPomodoro && !pausedPomodoro" (click)="pausePomodoro(timeForTimer)"> Pause </button>
+        <button ion-button round color="secondary" *ngIf="pausedPomodoro" (click)="resumePomodoro(timeForTimer)"> Resume </button>
       </ion-col>
-      <ion-col width-30></ion-col>
+      <ion-col>
+        <button ion-button round color="danger" *ngIf="startedPomodoro" (click)="stopPomodoro()"> Stop </button>
+        <button ion-button round color="danger" *ngIf="!startedPomodoro" (click)="clearPomodoro()"> Clear </button>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          Pomodoros completed: {{ numberOfPomodoros }} <br> Interruptions: {{ numberOfPauses }}
+        </ion-item>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

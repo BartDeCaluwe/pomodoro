@@ -1,9 +1,36 @@
 page-pomodoro {
+    button.button{
+        height: 12em;
+        width: 12em;
+        border-radius: 50%;
+        margin-bottom: 2em;
+    }
+    .button-inner{
+        font-size: 2.8em;
+    }
     #pauseButton{
         background-color: orange;
     }
     #timeLeft{
-        font-size: 3em;
+        font-size: 5em;
         font-family: Raleway;
+    }
+}
+
+@media (max-width: 567px) {
+    page-pomodoro{
+        button.button{
+            height: 8em;
+            width: 8em;
+            border-radius: 50%;
+            margin-bottom: 2em;
+        }
+        .button-inner{
+            font-size: 1.8em;
+        }
+        #timeLeft{
+            font-size: 3em;
+            font-family: Raleway;
+        }
     }
 }
